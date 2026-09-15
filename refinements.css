@@ -1,5 +1,7 @@
 /* Final UX/UI refinement layer */
 .eyebrow.dark { color: #76530b; }
+.brand { gap: 0; }
+.brand-logo { display: block; width: 68px; height: 68px; object-fit: contain; }
 .intro h2 em, .process-aside h2 em { color: #76530b; }
 .trend { font-size: 24px; color: #f4f6f7; margin: 7px 0 6px; }
 .insight-card strong { font-size: 29px; }
@@ -30,6 +32,7 @@
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
 
 @media (max-width: 800px) {
+  .brand-logo { width: 56px; height: 56px; }
   .trust-strip .container { grid-template-columns: 1fr; }
   .trust-strip .container > div, .trust-strip .container > div:first-child { border-left: 0; border-right: 0; border-bottom: 1px solid var(--line); padding: 18px 0; }
   .trust-strip .container > div:last-child { border-bottom: 0; }
