@@ -13,6 +13,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
 
 const menuButton = document.querySelector(".menu-button");
 const navLinks = document.querySelector(".nav-links");
+const siteHeader = document.querySelector(".site-header");
 menuButton.addEventListener("click", () => {
   const isOpen = navLinks.classList.toggle("open");
   menuButton.setAttribute("aria-expanded", isOpen);
@@ -27,6 +28,7 @@ if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   let ticking = false;
   const updateScrollMotion = () => {
     document.documentElement.style.setProperty("--scroll-y", window.scrollY);
+    siteHeader.classList.toggle("is-scrolled", window.scrollY > 12);
     ticking = false;
   };
   updateScrollMotion();
@@ -35,6 +37,13 @@ if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       window.requestAnimationFrame(updateScrollMotion);
       ticking = true;
     }
+  }, { passive: true });
+}
+
+// Mantiene la sombra de la cabecera consistente incluso si el movimiento se reduce.
+if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  window.addEventListener("scroll", () => {
+    siteHeader.classList.toggle("is-scrolled", window.scrollY > 12);
   }, { passive: true });
 }
 
