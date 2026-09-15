@@ -1,0 +1,37 @@
+/* Final UX/UI refinement layer */
+.eyebrow.dark { color: #76530b; }
+.intro h2 em, .process-aside h2 em { color: #76530b; }
+.trend { font-size: 24px; color: #f4f6f7; margin: 7px 0 6px; }
+.insight-card strong { font-size: 29px; }
+.insight-card strong span { font-size: 16px; }
+.progress i { width: 72%; }
+.insight-caption { display: block; margin-top: 8px; color: #b7c6d1; font-size: 9px; }
+
+.trust-strip { background: #f6f3ed; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.trust-strip .container { min-height: 142px; display: grid; grid-template-columns: repeat(3, 1fr); }
+.trust-strip .container > div { display: flex; align-items: center; gap: 16px; padding: 25px 28px; border-right: 1px solid var(--line); }
+.trust-strip .container > div:first-child { border-left: 1px solid var(--line); }
+.trust-symbol { color: #9b7011; font-size: 24px; }
+.trust-strip p { margin: 0; font-size: 13px; line-height: 1.45; }
+.trust-strip b, .trust-strip p span { display: block; }
+.trust-strip p span { color: var(--copy); font-size: 12px; margin-top: 3px; }
+
+.service-icon { font-size: inherit; }
+.service-icon svg { width: 43px; height: 43px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.service-card { overflow: hidden; }
+.service-card::after { content: ""; position: absolute; width: 105px; height: 105px; border: 1px solid rgba(217,173,59,.13); border-radius: 50%; right: -50px; top: -50px; transition: transform .35s ease; }
+.service-card:hover::after { transform: scale(1.4); }
+
+.floating-whatsapp svg { width: 18px; height: 18px; flex: none; }
+.floating-whatsapp:first-letter { font-size: inherit; }
+
+/* Content should always remain readable even where animation is unavailable. */
+.reveal { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+
+@media (max-width: 800px) {
+  .trust-strip .container { grid-template-columns: 1fr; }
+  .trust-strip .container > div, .trust-strip .container > div:first-child { border-left: 0; border-right: 0; border-bottom: 1px solid var(--line); padding: 18px 0; }
+  .trust-strip .container > div:last-child { border-bottom: 0; }
+  .floating-whatsapp svg { width: 20px; height: 20px; }
+}

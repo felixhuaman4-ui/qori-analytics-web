@@ -1,7 +1,11 @@
-const whatsappNumber = "51999999999"; // Reemplazar con el número oficial, sin + ni espacios.
-const message = "Hola, quiero solicitar información sobre una consultoría con Qori Analytics.";
+const whatsappNumber = "51947182071"; // Número oficial, sin + ni espacios.
+const defaultMessage = "Hola, quiero solicitar información sobre una consultoría con Qori Analytics.";
 
 document.querySelectorAll(".whatsapp-link").forEach((link) => {
+  const service = link.dataset.service;
+  const message = service
+    ? `Hola, quiero solicitar información sobre el servicio de ${service} de Qori Analytics.`
+    : defaultMessage;
   link.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 });
 
@@ -25,5 +29,10 @@ const observer = new IntersectionObserver((entries) => {
       observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.12 });
-document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+}, { threshold: 0.08 });
+
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+} else {
+  document.querySelectorAll(".reveal").forEach((element) => element.classList.add("visible"));
+}
