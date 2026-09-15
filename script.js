@@ -22,6 +22,22 @@ navLinks.querySelectorAll("a").forEach((link) => link.addEventListener("click", 
   menuButton.setAttribute("aria-expanded", "false");
 }));
 
+// Movimiento ambiental sutil: las tramas de fondo responden al desplazamiento.
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  let ticking = false;
+  const updateScrollMotion = () => {
+    document.documentElement.style.setProperty("--scroll-y", window.scrollY);
+    ticking = false;
+  };
+  updateScrollMotion();
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateScrollMotion);
+      ticking = true;
+    }
+  }, { passive: true });
+}
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
