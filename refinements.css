@@ -56,6 +56,16 @@
 
 /* Content should always remain readable even where animation is unavailable. */
 .reveal { opacity: 1; transform: none; }
+body.motion-ready .reveal { opacity: 0; filter: blur(3px); transform: translate3d(0, 30px, 0); transition: opacity .72s cubic-bezier(.2,.75,.2,1), transform .72s cubic-bezier(.2,.75,.2,1), filter .72s ease; }
+body.motion-ready .reveal.motion-in { opacity: 1; filter: blur(0); transform: translate3d(0, 0, 0); }
+body.motion-ready .service-card:nth-child(2) { transition-delay: .08s; }
+body.motion-ready .service-card:nth-child(3) { transition-delay: .16s; }
+body.motion-ready .service-card:nth-child(4) { transition-delay: .24s; }
+body.motion-ready .steps { transition-delay: .12s; }
+.section-heading { position: relative; }
+.section-heading::after { content: ""; position: absolute; left: 0; bottom: -22px; width: 55px; height: 1px; background: var(--gold); transform-origin: left; }
+body.motion-ready .section-heading::after { transform: scaleX(0); transition: transform .7s .22s cubic-bezier(.2,.75,.2,1); }
+body.motion-ready .section-heading.motion-in::after { transform: scaleX(1); }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
 
 @media (max-width: 800px) {

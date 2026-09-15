@@ -51,13 +51,18 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       entry.target.classList.add("visible");
+      entry.target.classList.add("motion-in");
       observer.unobserve(entry.target);
     }
   });
 }, { threshold: 0.08 });
 
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+  const revealElements = document.querySelectorAll(".reveal");
+  document.body.classList.add("motion-ready");
+  window.requestAnimationFrame(() => {
+    revealElements.forEach((element) => observer.observe(element));
+  });
 } else {
-  document.querySelectorAll(".reveal").forEach((element) => element.classList.add("visible"));
+  document.querySelectorAll(".reveal").forEach((element) => element.classList.add("visible", "motion-in"));
 }
